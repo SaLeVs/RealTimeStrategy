@@ -78,3 +78,10 @@ MonoBehaviour:
     - Settings Icon
     customIcons: []
     enabled: 1
+  - builtinIcons: []
+    customIcons:
+    - HumanTemplate Icon
+    enabled: 1
+  - builtinIcons: []
+    customIcons: []
+    enabled: 1

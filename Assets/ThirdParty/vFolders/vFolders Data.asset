@@ -13,6 +13,26 @@ MonoBehaviour:
   m_Name: vFolders Data
   m_EditorClassIdentifier: VFolders::VFolders.VFoldersData
   folderDatas_byGuid:
-    keys: []
-    values: []
+    keys:
+    - 00000000000000001000000000000000
+    - 2995a9d69ba0f4e4bb99f45ec8f82ea8
+    - 709f11a7f3c4041caa4ef136ea32d874
+    - a424a9a5b1ae9ec48991164ed88a9aec
+    values:
+    - iconNameOrGuid: TextAsset Icon
+      colorIndex: 1
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: SceneAsset Icon
+      colorIndex: 2
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Settings Icon
+      colorIndex: 10
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: HumanTemplate Icon
+      colorIndex: 6
+      isIconRecursive: 0
+      isColorRecursive: 0
   bookmarks: []
