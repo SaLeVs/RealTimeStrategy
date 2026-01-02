@@ -18,6 +18,9 @@ MonoBehaviour:
     - 2995a9d69ba0f4e4bb99f45ec8f82ea8
     - 709f11a7f3c4041caa4ef136ea32d874
     - a424a9a5b1ae9ec48991164ed88a9aec
+    - 3bb768c5ffc33a14d97ef214db8d6e49
+    - 9f9637de0388e21469e08baa070b719e
+    - 1ae30b86d84318e4799c5d974a42a739
     values:
     - iconNameOrGuid: TextAsset Icon
       colorIndex: 1
@@ -33,6 +36,18 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: HumanTemplate Icon
       colorIndex: 6
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Material Icon
+      colorIndex: 7
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Cubemap Icon
+      colorIndex: 6
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: RawImage Icon
+      colorIndex: 8
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:
