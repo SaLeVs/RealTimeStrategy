@@ -21,6 +21,7 @@ MonoBehaviour:
     - 3bb768c5ffc33a14d97ef214db8d6e49
     - 9f9637de0388e21469e08baa070b719e
     - 1ae30b86d84318e4799c5d974a42a739
+    - 0a87d503911712b4993e24519009be04
     values:
     - iconNameOrGuid: TextAsset Icon
       colorIndex: 1
@@ -48,6 +49,10 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: RawImage Icon
       colorIndex: 8
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:
