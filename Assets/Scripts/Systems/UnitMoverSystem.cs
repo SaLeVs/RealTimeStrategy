@@ -19,12 +19,16 @@ partial struct UnitMoverSystem : ISystem
         // RO stands for Read Only
         // It's good to choice the RO when we don't need to write to the component for better performance
         
-        foreach (RefRW<LocalTransform> localTransform in SystemAPI.Query<RefRW<LocalTransform>>())
+        foreach ((
+                     RefRW<LocalTransform> localTransform, 
+                     RefRO<MoveSpeed> moveSpeed) 
+                        in SystemAPI.Query<
+                           RefRW<LocalTransform>, RefRO<MoveSpeed>>())
         {
             // Look that we use RW for modify and RO for read only
             // DOTS have a special delta time that is different from UnityEngine.Time
             
-            localTransform.ValueRW.Position = localTransform.ValueRO.Position + new float3(1, 0, 0) * SystemAPI.Time.DeltaTime;
+            localTransform.ValueRW.Position = localTransform.ValueRO.Position + new float3(moveSpeed.ValueRO.value, 0, 0) * SystemAPI.Time.DeltaTime;
         }
     }
     
