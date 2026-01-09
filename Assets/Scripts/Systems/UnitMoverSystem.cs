@@ -1,6 +1,7 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 
 // System as a suffix is a convention to indicate that this struct is a system
@@ -21,9 +22,10 @@ partial struct UnitMoverSystem : ISystem
         
         foreach ((
                      RefRW<LocalTransform> localTransform, 
-                     RefRO<MoveSpeed> moveSpeed) 
+                     RefRO<MoveSpeed> moveSpeed,
+                     RefRW<PhysicsVelocity> physicsVelocity) 
                         in SystemAPI.Query<
-                           RefRW<LocalTransform>, RefRO<MoveSpeed>>())
+                           RefRW<LocalTransform>, RefRO<MoveSpeed>, RefRW<PhysicsVelocity>>())
         {
             // Look that we use RW for modify and RO for read only
             // DOTS have a special delta time that is different from UnityEngine.Time
@@ -35,7 +37,10 @@ partial struct UnitMoverSystem : ISystem
             moveDirection = math.normalize(moveDirection);
             
             localTransform.ValueRW.Rotation = quaternion.LookRotation(moveDirection, math.up()); // Math.up() is (0, 1, 0)
-            localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.value * SystemAPI.Time.DeltaTime;
+
+            physicsVelocity.ValueRW.Linear = moveDirection * moveSpeed.ValueRO.value;
+            physicsVelocity.ValueRW.Angular = float3.zero; // We add this to avoid unwanted rotation
+            // localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.value * SystemAPI.Time.DeltaTime;
         }
     }
     
