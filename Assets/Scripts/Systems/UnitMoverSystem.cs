@@ -27,8 +27,15 @@ partial struct UnitMoverSystem : ISystem
         {
             // Look that we use RW for modify and RO for read only
             // DOTS have a special delta time that is different from UnityEngine.Time
+            // Float3 means a vector with 3 float values (x, y, z)
             
-            localTransform.ValueRW.Position = localTransform.ValueRO.Position + new float3(moveSpeed.ValueRO.value, 0, 0) * SystemAPI.Time.DeltaTime;
+            float3 targetPosition = localTransform.ValueRO.Position + new float3(10f, 0f, 0f);
+            float3 moveDirection = targetPosition - localTransform.ValueRO.Position;
+            
+            moveDirection = math.normalize(moveDirection);
+            
+            localTransform.ValueRW.Rotation = quaternion.LookRotation(moveDirection, math.up()); // Math.up() is (0, 1, 0)
+            localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.value * SystemAPI.Time.DeltaTime;
         }
     }
     
