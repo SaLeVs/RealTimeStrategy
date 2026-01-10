@@ -3,7 +3,7 @@
         {
             "colors": [
                 {
-                    "objID": "Game_ENVORIMENT_3",
+                    "objID": "Game_ENVORIMENT_4",
                     "colorValue": "40BF40FF"
                 },
                 {
@@ -13,7 +13,7 @@
             ],
             "styles": [
                 {
-                    "objID": "Game_ENVORIMENT_3",
+                    "objID": "Game_ENVORIMENT_4",
                     "styleType": 1
                 },
                 {
