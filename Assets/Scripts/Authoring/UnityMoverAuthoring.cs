@@ -3,27 +3,24 @@ using UnityEngine;
 
 
 
-public struct MoveSpeed : IComponentData
+public struct UnitMover : IComponentData
 {
     // For create a dots component, we only need to define a struct that implements IComponentData
     // We don't have to add functions or methods on components, just data
-    
     public float value; // public fields are ok for ECS components
-    
-    
 }
 
-public class MoveSpeedAuthoring : MonoBehaviour
+public class UnityMoverAuthoring : MonoBehaviour
 {
     public float value;
 
-    public class Baker : Baker<MoveSpeedAuthoring>
+    public class Baker : Baker<UnityMoverAuthoring>
     {
-        public override void Bake(MoveSpeedAuthoring authoring)
+        public override void Bake(UnityMoverAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             
-            AddComponent(entity, new MoveSpeed
+            AddComponent(entity, new UnitMover
             {
                 value = authoring.value
             });

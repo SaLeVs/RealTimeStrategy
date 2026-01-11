@@ -22,10 +22,10 @@ partial struct UnitMoverSystem : ISystem
         
         foreach ((
                      RefRW<LocalTransform> localTransform, 
-                     RefRO<MoveSpeed> moveSpeed,
+                     RefRO<UnitMover> moveSpeed,
                      RefRW<PhysicsVelocity> physicsVelocity) 
                         in SystemAPI.Query<
-                           RefRW<LocalTransform>, RefRO<MoveSpeed>, RefRW<PhysicsVelocity>>())
+                           RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>>())
         {
             // Look that we use RW for modify and RO for read only
             // DOTS have a special delta time that is different from UnityEngine.Time
