@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
 
 // System as a suffix is a convention to indicate that this struct is a system
 // Partial keyword allows the system to be split across multiple files if needed
@@ -32,6 +33,7 @@ partial struct UnitMoverSystem : ISystem
             // Float3 means a vector with 3 float values (x, y, z)
 
             float3 targetPosition = MouseWorldPosition.Instance.GetPosition(); // This get an error because it's a mono-behavior, so will work, but not whit best performance in ECS
+            
             float3 moveDirection = targetPosition - localTransform.ValueRO.Position;
             
             moveDirection = math.normalize(moveDirection);
