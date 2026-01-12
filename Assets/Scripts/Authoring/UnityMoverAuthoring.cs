@@ -7,12 +7,14 @@ public struct UnitMover : IComponentData
 {
     // For create a dots component, we only need to define a struct that implements IComponentData
     // We don't have to add functions or methods on components, just data
-    public float value; // public fields are ok for ECS components
+    public float moveSpeed; // public fields are ok for ECS components
+    public float rotationSpeed;
 }
 
 public class UnityMoverAuthoring : MonoBehaviour
 {
-    public float value;
+    public float moveSpeed;
+    public float rotationSpeed;
 
     public class Baker : Baker<UnityMoverAuthoring>
     {
@@ -22,7 +24,8 @@ public class UnityMoverAuthoring : MonoBehaviour
             
             AddComponent(entity, new UnitMover
             {
-                value = authoring.value
+                moveSpeed = authoring.moveSpeed,
+                rotationSpeed = authoring.moveSpeed
             });
         }
     }

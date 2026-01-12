@@ -22,7 +22,7 @@ partial struct UnitMoverSystem : ISystem
         
         foreach ((
                      RefRW<LocalTransform> localTransform, 
-                     RefRO<UnitMover> moveSpeed,
+                     RefRO<UnitMover> unitMover,
                      RefRW<PhysicsVelocity> physicsVelocity) 
                         in SystemAPI.Query<
                            RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>>())
@@ -36,11 +36,9 @@ partial struct UnitMoverSystem : ISystem
             
             moveDirection = math.normalize(moveDirection);
             
-            float rotationSpeed = 10f;
-            
-            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, quaternion.LookRotation(moveDirection, math.up()), SystemAPI.Time.DeltaTime * rotationSpeed); // Math.up() is (0, 1, 0)
+            localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation, quaternion.LookRotation(moveDirection, math.up()), SystemAPI.Time.DeltaTime * unitMover.ValueRO.rotationSpeed); // Math.up() is (0, 1, 0)
 
-            physicsVelocity.ValueRW.Linear = moveDirection * moveSpeed.ValueRO.value;
+            physicsVelocity.ValueRW.Linear = moveDirection * unitMover.ValueRO.moveSpeed;
             physicsVelocity.ValueRW.Angular = float3.zero; // We add this to avoid unwanted rotation
             // localTransform.ValueRW.Position += moveDirection * moveSpeed.ValueRO.value * SystemAPI.Time.DeltaTime;
         }
