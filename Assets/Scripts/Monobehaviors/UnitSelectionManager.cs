@@ -9,7 +9,7 @@ public class UnitSelectionManager : MonoBehaviour
     private EntityManager _entityManager;
     private EntityQuery _entityQuery;
     
-    private NativeArray<UnitMover> _unitMovers;
+    private NativeArray<UnitMover> _unitMoverArray;
     private NativeArray<Entity> _entityArray;
     
     private void Update()
@@ -26,15 +26,17 @@ public class UnitSelectionManager : MonoBehaviour
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; // World.DefaultGameObjectInjectionWorld is the default world where all systems and entities are created
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover>().Build(_entityManager); 
             
-            _unitMovers = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+            _unitMoverArray = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
             _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
             
-            for(int i = 0; i < _unitMovers.Length; i++)
+            for(int i = 0; i < _unitMoverArray.Length; i++)
             {
-                UnitMover unitMover = _unitMovers[i];
+                UnitMover unitMover = _unitMoverArray[i];
                 unitMover.targetPosition = _mouseWorldPosition;
-                _entityManager.SetComponentData(_entityArray[i], unitMover);
+                _unitMoverArray[i] = unitMover;
             }
+            
+            _entityQuery.CopyFromComponentDataArray(_unitMoverArray);
         }
     }
 }
