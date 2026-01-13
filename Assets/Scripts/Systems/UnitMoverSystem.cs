@@ -44,7 +44,7 @@ partial struct UnitMoverSystem : ISystem
     
 }
 
-
+[BurstCompile]
 public partial struct UnitMoverJob : IJobEntity
 {
     // In DOTS documentation, the recommended way to pass data to jobs is using in and ref keywords
@@ -52,6 +52,8 @@ public partial struct UnitMoverJob : IJobEntity
     // ref is for read and write data
     
     public float deltaTime;
+    
+    
     public void Execute(ref LocalTransform localTransform, in UnitMover unitMover, ref PhysicsVelocity physicsVelocity)
     {
         // DOTS have a special delta time that is different from UnityEngine.Time
