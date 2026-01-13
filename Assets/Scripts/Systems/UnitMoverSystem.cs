@@ -31,10 +31,8 @@ partial struct UnitMoverSystem : ISystem
             // Look that we use RW for modify and RO for read only
             // DOTS have a special delta time that is different from UnityEngine.Time
             // Float3 means a vector with 3 float values (x, y, z)
-
-            float3 targetPosition = MouseWorldPosition.Instance.GetPosition(); // This get an error because it's a mono-behavior, so will work, but not whit best performance in ECS
             
-            float3 moveDirection = targetPosition - localTransform.ValueRO.Position;
+            float3 moveDirection = unitMover.ValueRO.targetPosition - localTransform.ValueRO.Position;
             
             moveDirection = math.normalize(moveDirection);
             

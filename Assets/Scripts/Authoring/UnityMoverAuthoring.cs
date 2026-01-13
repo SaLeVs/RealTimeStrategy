@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -9,6 +10,7 @@ public struct UnitMover : IComponentData
     // We don't have to add functions or methods on components, just data
     public float moveSpeed; // public fields are ok for ECS components
     public float rotationSpeed;
+    public float3 targetPosition;
 }
 
 public class UnityMoverAuthoring : MonoBehaviour
