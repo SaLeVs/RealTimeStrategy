@@ -60,7 +60,16 @@ public partial struct UnitMoverJob : IJobEntity
         // Float3 means a vector with 3 float values (x, y, z)
             
         float3 moveDirection = unitMover.targetPosition - localTransform.Position;
-            
+
+        float reachedTargetDistanceSq = 2f;
+        
+        if (math.lengthsq(moveDirection) < reachedTargetDistanceSq)
+        {
+            physicsVelocity.Linear = float3.zero;
+            physicsVelocity.Angular = float3.zero;
+            return;
+        }
+
         moveDirection = math.normalize(moveDirection);
             
         localTransform.Rotation = math.slerp(localTransform.Rotation, quaternion.LookRotation(moveDirection, math.up()), deltaTime * unitMover.rotationSpeed); // Math.up() is (0, 1, 0)
