@@ -8,7 +8,9 @@ public class UnitSelectionManager : MonoBehaviour
     private Vector3 _mouseWorldPosition;
     private EntityManager _entityManager;
     private EntityQuery _entityQuery;
+    
     private NativeArray<UnitMover> _unitMovers;
+    private NativeArray<Entity> _entityArray;
     
     private void Update()
     {
@@ -25,11 +27,13 @@ public class UnitSelectionManager : MonoBehaviour
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover>().Build(_entityManager); 
             
             _unitMovers = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+            _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
             
             for(int i = 0; i < _unitMovers.Length; i++)
             {
                 UnitMover unitMover = _unitMovers[i];
                 unitMover.targetPosition = _mouseWorldPosition;
+                _entityManager.SetComponentData(_entityArray[i], unitMover);
             }
         }
     }
