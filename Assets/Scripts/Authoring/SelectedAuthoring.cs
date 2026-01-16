@@ -7,11 +7,13 @@ using UnityEngine;
 public struct Selected : IComponentData, IEnableableComponent
 {
        public Entity selectedVisualEntity;
+       public float showVisualScale;
 }
 
 public class SelectedAuthoring : MonoBehaviour
 {
-    public GameObject selectedVisual;
+    public GameObject selectedVisualGameObject;
+    public float showVisualScale;
     
     public class SelectedAuthoringBaker : Baker<SelectedAuthoring>
     {
@@ -21,7 +23,8 @@ public class SelectedAuthoring : MonoBehaviour
             
             AddComponent(entity, new Selected
             {
-                selectedVisualEntity = GetEntity(authoring.selectedVisual, TransformUsageFlags.Dynamic)
+                selectedVisualEntity = GetEntity(authoring.selectedVisualGameObject, TransformUsageFlags.Dynamic),
+                showVisualScale = authoring.showVisualScale
             });
             
             SetComponentEnabled<Selected>(entity, false);
