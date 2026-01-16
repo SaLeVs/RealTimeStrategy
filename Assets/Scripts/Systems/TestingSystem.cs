@@ -10,7 +10,7 @@ partial struct TestingSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        int unitCount = 0;
+       /* int unitCount = 0;
         
         foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMover> unitMover, RefRW<PhysicsVelocity> physicsVelocity)
                  in SystemAPI.Query<
@@ -19,7 +19,9 @@ partial struct TestingSystem : ISystem
             unitCount++;
         } 
       
-        Debug.Log($"UnitCount: {unitCount}");
+        Debug.Log($"UnitCount: {unitCount}"); */
+       
+       
     }
 
     

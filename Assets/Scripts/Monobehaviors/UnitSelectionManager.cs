@@ -24,7 +24,7 @@ public class UnitSelectionManager : MonoBehaviour
             // Temp is shorter than other allocators, so we don't need to dispose it
 
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; // World.DefaultGameObjectInjectionWorld is the default world where all systems and entities are created
-            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover>().Build(_entityManager); 
+            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover, Selected>().Build(_entityManager); 
             
             _unitMoverArray = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
             _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
