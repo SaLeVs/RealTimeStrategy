@@ -12,9 +12,9 @@ partial struct TestingSystem : ISystem
     {
         int unitCount = 0;
         
-        foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMover> unitMover, RefRW<PhysicsVelocity> physicsVelocity, RefRO<Selected> selected)
+        foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMover> unitMover, RefRW<PhysicsVelocity> physicsVelocity)
                  in SystemAPI.Query<
-                         RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>, RefRO<Selected>>())
+                         RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>>().WithDisabled<Selected>()) // We have the WithPresent<Selected>() too, that filter only entities with the component enabled
         {
             unitCount++;
         } 
