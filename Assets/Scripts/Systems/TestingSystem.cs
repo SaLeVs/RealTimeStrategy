@@ -12,9 +12,9 @@ partial struct TestingSystem : ISystem
     {
         int unitCount = 0;
         
-        foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMover> unitMover, RefRW<PhysicsVelocity> physicsVelocity)
+        foreach ((RefRW<LocalTransform> localTransform, RefRO<UnitMover> unitMover, RefRW<PhysicsVelocity> physicsVelocity, RefRO<Selected> selected)
                  in SystemAPI.Query<
-                         RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>>())
+                         RefRW<LocalTransform>, RefRO<UnitMover>, RefRW<PhysicsVelocity>, RefRO<Selected>>())
         {
             unitCount++;
         } 

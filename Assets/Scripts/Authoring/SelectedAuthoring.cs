@@ -17,6 +17,7 @@ public class SelectedAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new Selected());
+            SetComponentEnabled<Selected>(entity, false);
         }
     }
 }
