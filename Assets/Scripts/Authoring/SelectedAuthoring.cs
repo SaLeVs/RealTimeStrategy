@@ -6,17 +6,24 @@ using UnityEngine;
 // This interface allow us to enable or disable a component without remove it from the entity
 public struct Selected : IComponentData, IEnableableComponent
 {
-       
+       public Entity selectedVisualEntity;
 }
 
 public class SelectedAuthoring : MonoBehaviour
 {
+    public GameObject selectedVisual;
+    
     public class SelectedAuthoringBaker : Baker<SelectedAuthoring>
     {
         public override void Bake(SelectedAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new Selected());
+            
+            AddComponent(entity, new Selected
+            {
+                selectedVisualEntity = GetEntity(authoring.selectedVisual, TransformUsageFlags.Dynamic)
+            });
+            
             SetComponentEnabled<Selected>(entity, false);
         }
     }

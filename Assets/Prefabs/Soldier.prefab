@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888c4e895e14aaf4d9035af64269f54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectedAuthoring
+  selectedVisual: {fileID: 9074190567469515110}
 --- !u!136 &2743269028959529856
 CapsuleCollider:
   m_ObjectHideFlags: 0
