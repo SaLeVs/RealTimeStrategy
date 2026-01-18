@@ -12,8 +12,23 @@ public class UnitSelectionManager : MonoBehaviour
     private NativeArray<UnitMover> _unitMoverArray;
     private NativeArray<Entity> _entityArray;
     
+    private Vector2 _startMousePosition;
+    private Vector2 _endMousePosition;
+    
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _startMousePosition = Input.mousePosition;
+            Debug.Log($"Start mouse position: {_startMousePosition}");
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            _endMousePosition = Input.mousePosition;
+            Debug.Log($"End mouse position: {_endMousePosition}");
+        }
+        
         if (Input.GetMouseButtonDown(1))
         {
             _mouseWorldPosition = MouseWorldPosition.Instance.GetPosition(); // This get an error because it's a mono-behavior, so will work, but not whit best performance in ECS
