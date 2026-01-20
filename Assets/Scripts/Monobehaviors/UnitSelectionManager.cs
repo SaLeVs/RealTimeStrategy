@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 // Managers is a common naming convention for MonoBehaviour classes and Systems that handle DOTS logic
 public class UnitSelectionManager : MonoBehaviour
 {
+    public event Action OnSelectionStart;
+    public event Action OnSelectionEnd;
+    
     private Vector3 _mouseWorldPosition;
     private EntityManager _entityManager;
     private EntityQuery _entityQuery;
@@ -20,13 +24,14 @@ public class UnitSelectionManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _startMousePosition = Input.mousePosition;
-            Debug.Log($"Start mouse position: {_startMousePosition}");
+            OnSelectionStart?.Invoke();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             _endMousePosition = Input.mousePosition;
-            Debug.Log($"End mouse position: {_endMousePosition}");
+            OnSelectionEnd?.Invoke();
+            
         }
         
         if (Input.GetMouseButtonDown(1))
@@ -53,5 +58,24 @@ public class UnitSelectionManager : MonoBehaviour
             
             _entityQuery.CopyFromComponentDataArray(_unitMoverArray);
         }
+    }
+
+    public Rect GetSelectionAreaRect()
+    {
+        Vector2 selectionEndMousePosition = Input.mousePosition;
+        
+        Vector2 lowerLeftCorner = new Vector2(
+            Mathf.Min(_startMousePosition.x, selectionEndMousePosition.x), 
+            Mathf.Min(_startMousePosition.y, selectionEndMousePosition.y));
+        
+        Vector2 upperRightCorner = new Vector2(
+            Mathf.Max(_startMousePosition.x, selectionEndMousePosition.x),
+            Mathf.Max(_startMousePosition.y, selectionEndMousePosition.y));
+        
+        return new  Rect(
+            lowerLeftCorner.x, 
+            lowerLeftCorner.y, 
+            upperRightCorner.x - lowerLeftCorner.x,
+            upperRightCorner.y - lowerLeftCorner.y);
     }
 }
