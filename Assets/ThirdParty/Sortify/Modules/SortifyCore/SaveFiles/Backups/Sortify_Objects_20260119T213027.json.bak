@@ -9,6 +9,10 @@
                 {
                     "objID": "Game_MANAGERS_0",
                     "colorValue": "BFBF40FF"
+                },
+                {
+                    "objID": "Game_CANVASES_7",
+                    "colorValue": "4CB5FFFF"
                 }
             ],
             "styles": [
@@ -18,6 +22,10 @@
                 },
                 {
                     "objID": "Game_MANAGERS_0",
+                    "styleType": 1
+                },
+                {
+                    "objID": "Game_CANVASES_7",
                     "styleType": 1
                 }
             ],
