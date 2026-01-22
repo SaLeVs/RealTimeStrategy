@@ -22,6 +22,14 @@ public class UnitSelectionManager : MonoBehaviour
     private Vector2 _startMousePosition;
     private Vector2 _endMousePosition;
     
+    private Camera _mainCamera;
+
+
+    private void Awake()
+    {
+        _mainCamera = Camera.main;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -44,8 +52,6 @@ public class UnitSelectionManager : MonoBehaviour
                 _entityManager.SetComponentEnabled<Selected>(_entityArray[i], false);
             }
             
-            
-            
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(_entityManager); 
             
             _localTransformArray = _entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
@@ -56,7 +62,7 @@ public class UnitSelectionManager : MonoBehaviour
             for(int i = 0; i < _localTransformArray.Length; i++)
             {
                 LocalTransform localTransform = _localTransformArray[i];
-                Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(localTransform.Position);
+                Vector2 unitScreenPosition = _mainCamera.WorldToScreenPoint(localTransform.Position);
 
                 if (selectionAreaRect.Contains(unitScreenPosition))
                 {

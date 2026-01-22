@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitSelectionManagerUI
   selectionAreaRectTransform: {fileID: 1745272228}
   unitSelectionManager: {fileID: 277429445}
+  canvas: {fileID: 653029226}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
