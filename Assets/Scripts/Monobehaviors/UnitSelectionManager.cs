@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 // Managers is a common naming convention for MonoBehaviour classes and Systems that handle DOTS logic
@@ -30,6 +31,20 @@ public class UnitSelectionManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _endMousePosition = Input.mousePosition;
+            
+            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; 
+            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform>().Build(_entityManager); 
+            
+            _unitMoverArray = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+            _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
+            
+            for(int i = 0; i < _unitMoverArray.Length; i++)
+            {
+                UnitMover unitMover = _unitMoverArray[i];
+                unitMover.targetPosition = _mouseWorldPosition;
+                _unitMoverArray[i] = unitMover;
+            }
+            
             OnSelectionEnd?.Invoke();
             
         }
