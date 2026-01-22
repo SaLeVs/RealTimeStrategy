@@ -35,6 +35,17 @@ public class UnitSelectionManager : MonoBehaviour
             _endMousePosition = Input.mousePosition;
             
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; 
+            
+            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected>().Build(_entityManager); 
+            _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
+            
+            for(int i = 0; i < _entityArray.Length; i++)
+            {
+                _entityManager.SetComponentEnabled<Selected>(_entityArray[i], false);
+            }
+            
+            
+            
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(_entityManager); 
             
             _localTransformArray = _entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
