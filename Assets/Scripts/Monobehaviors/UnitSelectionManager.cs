@@ -3,6 +3,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 // Managers is a common naming convention for MonoBehaviour classes and Systems that handle DOTS logic
 public class UnitSelectionManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class UnitSelectionManager : MonoBehaviour
     private EntityManager _entityManager;
     private EntityQuery _entityQuery;
     
+    private NativeArray<LocalTransform> _localTransformArray;
     private NativeArray<UnitMover> _unitMoverArray;
     private NativeArray<Entity> _entityArray;
     
@@ -33,16 +35,22 @@ public class UnitSelectionManager : MonoBehaviour
             _endMousePosition = Input.mousePosition;
             
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; 
-            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform>().Build(_entityManager); 
+            _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(_entityManager); 
             
-            _unitMoverArray = _entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+            _localTransformArray = _entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
             _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
             
-            for(int i = 0; i < _unitMoverArray.Length; i++)
+            Rect selectionAreaRect = GetSelectionAreaRect();
+            
+            for(int i = 0; i < _localTransformArray.Length; i++)
             {
-                UnitMover unitMover = _unitMoverArray[i];
-                unitMover.targetPosition = _mouseWorldPosition;
-                _unitMoverArray[i] = unitMover;
+                LocalTransform localTransform = _localTransformArray[i];
+                Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(localTransform.Position);
+
+                if (selectionAreaRect.Contains(unitScreenPosition))
+                {
+                    _entityManager.SetComponentEnabled<Selected>(_entityArray[i], true);
+                }
             }
             
             OnSelectionEnd?.Invoke();
