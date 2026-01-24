@@ -23,6 +23,8 @@ public class UnitSelectionManager : MonoBehaviour
     private Vector2 _endMousePosition;
     
     private Camera _mainCamera;
+    private float _minSelectionAreaSize;
+    private bool _isMultipleSelection;
 
 
     private void Awake()
@@ -52,12 +54,19 @@ public class UnitSelectionManager : MonoBehaviour
                 _entityManager.SetComponentEnabled<Selected>(_entityArray[i], false);
             }
             
+            Rect selectionAreaRect = GetSelectionAreaRect();
+            float selectionAreaSize = selectionAreaRect.width + selectionAreaRect.height;
+            _minSelectionAreaSize = 40f;
+            
+            _isMultipleSelection = selectionAreaSize > _minSelectionAreaSize;
+            Debug.Log($"Is Multiple Selection: {_isMultipleSelection} Size: {selectionAreaSize}");
+            
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<LocalTransform, Unit>().WithPresent<Selected>().Build(_entityManager); 
             
             _localTransformArray = _entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp);
             _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
             
-            Rect selectionAreaRect = GetSelectionAreaRect();
+          
             
             for(int i = 0; i < _localTransformArray.Length; i++)
             {
