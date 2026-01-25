@@ -8,6 +8,8 @@ public class UnitSelectionManagerUI : MonoBehaviour
     
     [SerializeField] private Canvas canvas;
     
+    private Rect _selectionAreaRect;
+    private float _canvasScale;
     
     private void Awake()
     {
@@ -39,12 +41,12 @@ public class UnitSelectionManagerUI : MonoBehaviour
     
     private void UpdateVisual()
     {
-        Rect selectionAreaRect = unitSelectionManager.GetSelectionAreaRect();
+        _selectionAreaRect = unitSelectionManager.GetSelectionAreaRect();
         
-        float canvasScale = canvas.transform.localScale.x;
+        _canvasScale = canvas.transform.localScale.x;
         
-        selectionAreaRectTransform.anchoredPosition = new Vector2(selectionAreaRect.x, selectionAreaRect.y ) / canvasScale;
-        selectionAreaRectTransform.sizeDelta = new Vector2(selectionAreaRect.width, selectionAreaRect.height) / canvasScale;
+        selectionAreaRectTransform.anchoredPosition = new Vector2(_selectionAreaRect.x, _selectionAreaRect.y ) / _canvasScale;
+        selectionAreaRectTransform.sizeDelta = new Vector2(_selectionAreaRect.width, _selectionAreaRect.height) / _canvasScale;
     }
     
 }
