@@ -20,6 +20,7 @@ public class UnitSelectionManager : MonoBehaviour
     private NativeArray<UnitMover> _unitMoverArray;
     private NativeArray<Entity> _entityArray;
     private NativeArray<float3> _movePositionArray;
+    private NativeArray<Selected> _selectedArray;
     
     private Vector2 _startMousePosition;
     private Vector2 _endMousePosition;
@@ -54,9 +55,14 @@ public class UnitSelectionManager : MonoBehaviour
             _entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<Selected>().Build(_entityManager); 
             _entityArray = _entityQuery.ToEntityArray(Allocator.Temp);
             
+            _selectedArray = _entityQuery.ToComponentDataArray<Selected>(Allocator.Temp);
+            
             for(int i = 0; i < _entityArray.Length; i++)
             {
                 _entityManager.SetComponentEnabled<Selected>(_entityArray[i], false);
+                Selected selected = _selectedArray[i];
+                selected.onDeselected = true;
+                _entityManager.SetComponentData(_entityArray[i], selected);
             }
             
             Rect selectionAreaRect = GetSelectionAreaRect();
@@ -79,6 +85,7 @@ public class UnitSelectionManager : MonoBehaviour
                     if (selectionAreaRect.Contains(unitScreenPosition))
                     {
                         _entityManager.SetComponentEnabled<Selected>(_entityArray[i], true);
+                        _entityManager
                     }
                 }
             }

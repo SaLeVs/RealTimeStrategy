@@ -8,6 +8,8 @@ public struct Selected : IComponentData, IEnableableComponent
 {
        public Entity selectedVisualEntity;
        public float showVisualScale;
+       public bool onSelected;
+       public bool onDeselected;
 }
 
 public class SelectedAuthoring : MonoBehaviour
