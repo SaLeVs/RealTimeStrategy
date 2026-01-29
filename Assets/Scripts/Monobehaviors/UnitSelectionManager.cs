@@ -4,7 +4,6 @@ using Unity.Entities;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 // Managers is a common naming convention for MonoBehaviour classes and Systems that handle DOTS logic
 public class UnitSelectionManager : MonoBehaviour
@@ -26,7 +25,10 @@ public class UnitSelectionManager : MonoBehaviour
     private Camera _mainCamera;
     private float _minSelectionAreaSize;
     private bool _isMultipleSelection;
-
+    
+    private const float START_RAYCAST_DISTANCE = 0;
+    private const float END_RAYCAST_DISTANCE = 10000;
+    private const int UNITS_LAYER = 6;
 
     private void Awake()
     {
@@ -89,20 +91,27 @@ public class UnitSelectionManager : MonoBehaviour
                 
                 RaycastInput rayCastInput = new RaycastInput
                 {
-                    Start = cameraRay.GetPoint(0f), // 0f is the near plane
-                    End = cameraRay.GetPoint(10000f), // 10000f is a far distance
+                    Start = cameraRay.GetPoint(START_RAYCAST_DISTANCE), // 0f is the near plane
+                    End = cameraRay.GetPoint(END_RAYCAST_DISTANCE), // 10000f is a far distance
                     Filter = new CollisionFilter
                     {
-                        BelongsTo = 
+                        BelongsTo = ~0u, // ~0u mean that we convert all 0 in binary to 1, so the ray belongs to all layers
+                        CollidesWith = 1u << UNITS_LAYER, // We put 1u << 6 because our units are in layer 6, and we need to shift 1 to the left 6 times to get the correct bitmask
+                        GroupIndex = 0
                     }
                 };
-                collisionWorld.CastRay()
-
+                
+                if (collisionWorld.CastRay(rayCastInput, out Unity.Physics.RaycastHit raycastHit))
+                {
+                    if (_entityManager.HasComponent<Unit>(raycastHit.Entity))
+                    {
+                        // Select the unit
+                        _entityManager.SetComponentEnabled<Selected>(raycastHit.Entity, true);
+                    }
+                }
             }
             
-            
             OnSelectionEnd?.Invoke();
-            
         }
         
         if (Input.GetMouseButtonDown(1))
