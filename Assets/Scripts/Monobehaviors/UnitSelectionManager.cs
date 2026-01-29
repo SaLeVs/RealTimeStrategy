@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
+using RaycastHit = Unity.Physics.RaycastHit;
 
 // Managers is a common naming convention for MonoBehaviour classes and Systems that handle DOTS logic
 public class UnitSelectionManager : MonoBehaviour
@@ -85,7 +86,9 @@ public class UnitSelectionManager : MonoBehaviour
                     if (selectionAreaRect.Contains(unitScreenPosition))
                     {
                         _entityManager.SetComponentEnabled<Selected>(_entityArray[i], true);
-                        _entityManager
+                        Selected selected = _entityManager.GetComponentData<Selected>(_entityArray[i]);
+                        selected.onSelected = true;
+                        _entityManager.SetComponentData(_entityArray[i], selected);
                     }
                 }
             }
@@ -116,6 +119,9 @@ public class UnitSelectionManager : MonoBehaviour
                     {
                         // Select the unit
                         _entityManager.SetComponentEnabled<Selected>(raycastHit.Entity, true);
+                        Selected selected = _entityManager.GetComponentData<Selected>(raycastHit.Entity);
+                        selected.onSelected = true;
+                        _entityManager.SetComponentData(raycastHit.Entity, selected);
                     }
                 }
             }
