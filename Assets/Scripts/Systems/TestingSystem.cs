@@ -4,7 +4,7 @@ using UnityEngine;
 
 partial struct TestingSystem : ISystem
 {
-
+ /*
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
@@ -16,9 +16,7 @@ partial struct TestingSystem : ISystem
         } 
       
         Debug.Log($"UnitCount: {unitCount}"); 
-       
-       
-    }
+    } */
 
     
 }

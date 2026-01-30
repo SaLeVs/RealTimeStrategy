@@ -23,6 +23,7 @@ MonoBehaviour:
     - 1ae30b86d84318e4799c5d974a42a739
     - 0a87d503911712b4993e24519009be04
     - 8924950988f38c1458435949e42c3b08
+    - 74b1fc0618151ad4f804dc18844c4a6a
     values:
     - iconNameOrGuid: TextAsset Icon
       colorIndex: 1
@@ -58,6 +59,10 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: Prefab Icon
       colorIndex: 6
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: SceneAsset Icon
+      colorIndex: 10
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks:
