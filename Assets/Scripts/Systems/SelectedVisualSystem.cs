@@ -2,6 +2,8 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
+[UpdateInGroup(typeof(LateSimulationSystemGroup))]
+[UpdateBefore(typeof(ResetEventsSystem))]
 partial struct SelectedVisualSystem : ISystem
 {
     [BurstCompile]
