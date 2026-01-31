@@ -32,7 +32,6 @@ public class UnitSelectionManager : MonoBehaviour
     
     private const float START_RAYCAST_DISTANCE = 0;
     private const float END_RAYCAST_DISTANCE = 10000;
-    private const int UNITS_LAYER = 6;
 
     private void Awake()
     {
@@ -108,7 +107,7 @@ public class UnitSelectionManager : MonoBehaviour
                     Filter = new CollisionFilter
                     {
                         BelongsTo = ~0u, // ~0u mean that we convert all 0 in binary to 1, so the ray belongs to all layers
-                        CollidesWith = 1u << UNITS_LAYER, // We put 1u << 6 because our units are in layer 6, and we need to shift 1 to the left 6 times to get the correct bitmask
+                        CollidesWith = 1u << GameAssets.UNITS_LAYER, // We put 1u << 6 because our units are in layer 6, and we need to shift 1 to the left 6 times to get the correct bitmask
                         GroupIndex = 0
                     }
                 };

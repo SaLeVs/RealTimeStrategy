@@ -3,7 +3,7 @@
         {
             "colors": [
                 {
-                    "objID": "Game_ENVORIMENT_5",
+                    "objID": "Game_ENVORIMENT_6",
                     "colorValue": "40BF40FF"
                 },
                 {
@@ -11,13 +11,13 @@
                     "colorValue": "BFBF40FF"
                 },
                 {
-                    "objID": "Game_CANVASES_7",
+                    "objID": "Game_CANVASES_8",
                     "colorValue": "4CB5FFFF"
                 }
             ],
             "styles": [
                 {
-                    "objID": "Game_ENVORIMENT_5",
+                    "objID": "Game_ENVORIMENT_6",
                     "styleType": 1
                 },
                 {
@@ -25,7 +25,7 @@
                     "styleType": 1
                 },
                 {
-                    "objID": "Game_CANVASES_7",
+                    "objID": "Game_CANVASES_8",
                     "styleType": 1
                 }
             ],

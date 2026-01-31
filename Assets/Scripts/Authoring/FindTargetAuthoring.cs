@@ -4,6 +4,7 @@ using UnityEngine;
 public class FindTargetAuthoring : MonoBehaviour
 {
     public float range;
+    public Faction targetFaction;
 }
 
 
@@ -15,7 +16,8 @@ public class FindTargetAuthoringBaker : Baker<FindTargetAuthoring>
         Entity entity = GetEntity(TransformUsageFlags.Dynamic);
         AddComponent(entity, new FindTarget
         {
-            range = authoring.range
+            range = authoring.range,
+            targetFaction = authoring.targetFaction,
         });
     }
     
@@ -25,4 +27,5 @@ public class FindTargetAuthoringBaker : Baker<FindTargetAuthoring>
 public struct FindTarget : IComponentData
 {
     public float range;
+    public Faction targetFaction;
 }
