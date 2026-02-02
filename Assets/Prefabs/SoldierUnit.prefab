@@ -163,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4239097310435049974, guid: ca3e32e4465466440af958458565c23b, type: 3}
       insertIndex: 4
       addedObject: {fileID: 7905056470629151906}
+    - targetCorrespondingSourceObject: {fileID: 4239097310435049974, guid: ca3e32e4465466440af958458565c23b, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 8566951323309565168}
   m_SourcePrefab: {fileID: 100100000, guid: ca3e32e4465466440af958458565c23b, type: 3}
 --- !u!1 &1087747359422546804 stripped
 GameObject:
@@ -195,6 +198,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd10dbe6fb3e0f43bded27ff4e0f9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FriendlyAuthoring
+--- !u!114 &8566951323309565168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087747359422546804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5e8632b790a5f4b818d20e869f95ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootAttackAuthoring
+  timerMax: 0.2
 --- !u!4 &2119742588153903422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2929290676642626492, guid: ca3e32e4465466440af958458565c23b, type: 3}
