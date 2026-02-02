@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6099513039376460062}
   - component: {fileID: 2743269028959529856}
   - component: {fileID: 8895393181715280006}
+  - component: {fileID: 8380025411882144142}
   m_Layer: 6
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -156,6 +157,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &8380025411882144142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239097310435049974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Entities.Hybrid::Unity.Entities.Hybrid.Baking.LinkedEntityGroupAuthoring
 --- !u!1 &4274869003861030132
 GameObject:
   m_ObjectHideFlags: 0
