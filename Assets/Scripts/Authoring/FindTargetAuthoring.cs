@@ -5,6 +5,7 @@ public class FindTargetAuthoring : MonoBehaviour
 {
     public float range;
     public Faction targetFaction;
+    public float timerMax;
 }
 
 
@@ -18,6 +19,7 @@ public class FindTargetAuthoringBaker : Baker<FindTargetAuthoring>
         {
             range = authoring.range,
             targetFaction = authoring.targetFaction,
+            timerMax = authoring.timerMax,
         });
     }
     
@@ -28,4 +30,6 @@ public struct FindTarget : IComponentData
 {
     public float range;
     public Faction targetFaction;
+    public float timer;
+    public float timerMax;
 }

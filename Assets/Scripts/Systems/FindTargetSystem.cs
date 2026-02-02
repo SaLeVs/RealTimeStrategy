@@ -16,9 +16,17 @@ partial struct FindTargetSystem : ISystem
         
         NativeList<DistanceHit> distanceHits = new NativeList<DistanceHit>(Allocator.Temp);
         
-        foreach ((RefRO<LocalTransform> localTransform, RefRO<FindTarget> findTarget, RefRW<Target> target) 
-                 in SystemAPI.Query<RefRO<LocalTransform>, RefRO<FindTarget>, RefRW<Target>>())
+        foreach ((RefRO<LocalTransform> localTransform, RefRW<FindTarget> findTarget, RefRW<Target> target) 
+                 in SystemAPI.Query<RefRO<LocalTransform>, RefRW<FindTarget>, RefRW<Target>>())
         {
+            findTarget.ValueRW.timer -= SystemAPI.Time.DeltaTime;
+            if (findTarget.ValueRO.timer > 0f)
+            {
+                // Timer not elapsed
+                continue;
+            }
+            findTarget.ValueRW.timer = findTarget.ValueRO.timerMax;
+            
             distanceHits.Clear();
             CollisionFilter collisionFilter = new CollisionFilter
             {
@@ -37,6 +45,7 @@ partial struct FindTargetSystem : ISystem
                     {
                         // Valid target found
                         target.ValueRW.targetEntity = distanceHit.Entity;
+                        break;
                     }
                 }
             }
