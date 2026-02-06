@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 395306906}
+    - target: {fileID: 8406654593432037167, guid: f2931a57b86d51c4a964c4b8d4074811, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9144197412731788316, guid: f2931a57b86d51c4a964c4b8d4074811, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -231,7 +235,11 @@ PrefabInstance:
     - target: {fileID: 1906999984611867610, guid: f2931a57b86d51c4a964c4b8d4074811, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 395306906}
+      objectReference: {fileID: 702670187}
+    - target: {fileID: 8406654593432037167, guid: f2931a57b86d51c4a964c4b8d4074811, type: 3}
+      propertyPath: damageAmount
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9144197412731788316, guid: f2931a57b86d51c4a964c4b8d4074811, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -302,6 +310,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2738687874215599979, guid: 2f9a551f29ca8904098e3946b4e5b91b, type: 3}
   m_PrefabInstance: {fileID: 395306905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &702670187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2738687874215599979, guid: 2f9a551f29ca8904098e3946b4e5b91b, type: 3}
+  m_PrefabInstance: {fileID: 869847272}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &818974217
 PrefabInstance:
