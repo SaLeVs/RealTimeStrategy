@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 4551814554795781309}
   - component: {fileID: 8406654593432037167}
   - component: {fileID: 1906999984611867610}
+  - component: {fileID: 180949291520149885}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -172,3 +173,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99e871b4d2e395488e215c1adb2e8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetAuthoring
+  target: {fileID: 0}
+--- !u!114 &180949291520149885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144197412731788316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Entities.Hybrid::Unity.Entities.Hybrid.Baking.LinkedEntityGroupAuthoring

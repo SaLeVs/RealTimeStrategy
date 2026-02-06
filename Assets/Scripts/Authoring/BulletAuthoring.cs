@@ -12,7 +12,7 @@ public class BulletAuthoringBaker : Baker<BulletAuthoring>
     public override void Bake(BulletAuthoring authoring)
     {
         Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-        AddComponent(entity, new BulletData
+        AddComponent(entity, new Bullet
         {
             speed = authoring.speed,
             damageAmount = authoring.damageAmount
@@ -20,7 +20,7 @@ public class BulletAuthoringBaker : Baker<BulletAuthoring>
     }
 }
 
-public struct BulletData : IComponentData
+public struct Bullet : IComponentData
 {
     public float speed;
     public int damageAmount;
